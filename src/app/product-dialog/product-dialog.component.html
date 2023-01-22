@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-content>
+    <h1 mat-dialog-title>{{dialogName}}</h1>
+    <div mat-dialog-content>
+      <form class="example-form" [formGroup]="productForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Code</mat-label>
+          <input formControlName="code" type="text" matInput placeholder="Type the code of the product.">
+          <mat-error *ngIf="productForm.get('code')?.errors?.['required']">You must enter a value.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input formControlName="name" type="text" matInput placeholder="Type the name of the product.">
+          <mat-error *ngIf="productForm.get('name')?.errors?.['required']">You must enter a value.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Type</mat-label>
+          <input formControlName="type" type="text" matInput placeholder="Type the type of product.">
+          <mat-error *ngIf="productForm.get('type')?.errors?.['required']">You must enter a value.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Cost</mat-label>
+          <input formControlName="cost" type="number" matInput class="example-right-align" placeholder="0">
+          <span matTextPrefix>$&nbsp;</span>
+          <span matTextSuffix>.00</span>
+          <mat-error *ngIf="productForm.get('cost')?.errors?.['required']">You must enter a value.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Measurement unit</mat-label>
+          <input formControlName="measurement_unit" type="text" matInput placeholder="Type the measurement unit of the product.">
+          <mat-error *ngIf="productForm.get('measurement_unit')?.errors?.['required']">You must enter a value.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Supplier</mat-label>
+          <mat-select formControlName="supplier">
+            <mat-option>Select</mat-option>
+            <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{supplier.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="productForm.get('supplier')?.errors?.['required']">You must select a value.</mat-error>
+        </mat-form-field>
+
+        <div mat-dialog-actions [align]="'end'">
+          <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+          <button mat-raised-button color="primary" (click)="addProduct()">{{actionButton}}</button>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

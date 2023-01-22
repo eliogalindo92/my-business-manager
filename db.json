@@ -1,36 +1,44 @@
 {
   "products": [
     {
-      "code": "23-53-65-87",
-      "name": "Maní",
-      "type": "Maní molido",
-      "cost": 50,
-      "measurement_unit": "unidad",
-      "id": 4
+      "code": "0001",
+      "name": "Ron",
+      "type": "Havana Club Silver Dry",
+      "cost": 800,
+      "measurement_unit": "u",
+      "id": 1
     },
     {
-      "code": "34-6-4-7",
-      "name": "Maní",
-      "type": "Maní en grano",
-      "cost": 60,
-      "measurement_unit": "unidad",
-      "id": 7
-    },
-    {
-      "code": "45-DF-45-67",
-      "name": "Café",
-      "type": "Cafe Cubita",
-      "cost": 600,
-      "measurement_unit": "paquete",
-      "id": 8
-    },
-    {
-      "code": "56-34-66-AA",
+      "code": "0002",
       "name": "Cerveza",
-      "type": "Bucanero",
+      "type": "Cristal",
       "cost": 160,
-      "measurement_unit": "caja",
-      "id": 9
+      "measurement_unit": "u",
+      "id": 2
+    },
+    {
+      "code": "0003",
+      "name": "Cerverza",
+      "type": "Bucanero",
+      "cost": 170,
+      "measurement_unit": "u",
+      "id": 3
+    },
+    {
+      "code": "0005",
+      "name": "Refresco",
+      "type": "Coca Cola",
+      "cost": 250,
+      "measurement_unit": "u",
+      "id": 5
+    },
+    {
+      "code": "0006",
+      "name": "Refresco",
+      "type": "Lima",
+      "cost": 300,
+      "measurement_unit": "u",
+      "id": 6
     }
   ],
   "comments": [

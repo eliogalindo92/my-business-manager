@@ -10,21 +10,35 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
-import { AddProductComponent } from './add-product/add-product.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
-import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { DeleteProductDialogComponent } from './delete-product-dialog/delete-product-dialog.component';
+import {MatSelectModule} from "@angular/material/select";
+import { SuppliersComponent } from './suppliers/suppliers.component';
+import { SupplierDialogComponent } from './supplier-dialog/supplier-dialog.component';
+import { DeleteSupplierDialogComponent } from './delete-supplier-dialog/delete-supplier-dialog.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    AddProductComponent,
-    ConfirmationDialogComponent
+    DashboardComponent,
+    ProductDialogComponent,
+    DeleteProductDialogComponent,
+    SuppliersComponent,
+    SupplierDialogComponent,
+    DeleteSupplierDialogComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +56,10 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

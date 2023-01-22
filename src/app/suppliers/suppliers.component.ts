@@ -1,21 +1,21 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ApiService} from "../services/api.service";
-import {ProductDialogComponent} from "../product-dialog/product-dialog.component";
-import {DeleteProductDialogComponent} from "../delete-product-dialog/delete-product-dialog.component";
+import {SupplierDialogComponent} from "../supplier-dialog/supplier-dialog.component";
+import {DeleteSupplierDialogComponent} from "../delete-supplier-dialog/delete-supplier-dialog.component";
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  selector: 'app-suppliers',
+  templateUrl: './suppliers.component.html',
+  styleUrls: ['./suppliers.component.css']
 })
-export class ProductsComponent implements OnInit{
+export class SuppliersComponent implements OnInit{
 
-  displayedColumns: string[] = ['code', 'name', 'type', 'cost', 'measurement_unit', 'suppliers', 'options'];
+  displayedColumns: string[] = ['code', 'name', 'phone_number', 'address', 'options'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,52 +37,52 @@ export class ProductsComponent implements OnInit{
   }
 
   openDialog() {
-    this.dialog.open(ProductDialogComponent, {
+    this.dialog.open(SupplierDialogComponent, {
       width: 'auto',
     }).afterClosed().subscribe(
       value => {
         if (value === "save"){
-          this.getProducts();
+          this.getSuppliers();
         }
       }
     );
   }
 
   editProduct(row: any){
-    this.dialog.open(ProductDialogComponent,
+    this.dialog.open(SupplierDialogComponent,
       {
         width: 'auto',
         data: row,
       }).afterClosed().subscribe(
-        value => {
+      value => {
         if (value === 'update'){
-          this.getProducts();
+          this.getSuppliers();
         }
-    });
+      });
   }
 
   openConfirmationDialog(id: number) {
-    this.dialog.open(DeleteProductDialogComponent, {
+    this.dialog.open(DeleteSupplierDialogComponent, {
       width: 'auto',
       data: id
     }).afterClosed().subscribe(
       value => {
         if (value === 'yes'){
-          this.getProducts();
+          this.getSuppliers();
         }
       }
     );
   }
 
-  getProducts() {
-    this.api.getProducts().subscribe(
+  getSuppliers() {
+    this.api.getSuppliers().subscribe(
       {
         next: (res)=>{
           this.dataSource = new MatTableDataSource(res);
           this.ngAfterViewInit();
         },
-        error: ()=>{
-          this._snackBar.open('Ups, something went wrong', 'X', {
+        error: (err)=>{
+          this._snackBar.open('Something went wrong', 'X', {
             duration: 3000,
           });
         }
@@ -90,7 +90,7 @@ export class ProductsComponent implements OnInit{
     );
   }
   ngOnInit(): void {
-    this.getProducts();
+    this.getSuppliers();
   }
 
 }
