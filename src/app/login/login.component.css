@@ -1,0 +1,28 @@
+.body{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+example-card {
+  max-width: 300px;
+  text-align: center;
+}
+
+mat-card-footer{
+  padding-top: 20px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 250px;
+  width: 100%;
+}
+mat-form-field
+{
+  width: 100%;
+}
+button{
+  width: 100%;
+}

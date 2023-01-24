@@ -1,11 +1,35 @@
 <p>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon">
-      <mat-icon>menu</mat-icon>
+    <button mat-icon-button (click)="drawer.toggle()" class="example-icon">
+      <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
+      <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>
     <span>My Business Manager</span>
     <span class="example-spacer"></span>
+    <button mat-icon-button routerLink="/login" class="example-icon" matTooltip="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
   </mat-toolbar>
 </p>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <img src="" alt="" class="avatar mat-elevation-z4">
+    <h4>Menu</h4>
+    <mat-divider></mat-divider>
+    <button mat-flat-button class="menu-button" routerLink="products" (click)="drawer.toggle()">
+      <mat-icon>inventory</mat-icon>
+      <span>My Products</span>
+    </button>
+    <button mat-flat-button class="menu-button" routerLink="suppliers" (click)="drawer.toggle()">
+      <mat-icon>group</mat-icon>
+      <span>My Suppliers</span>
+    </button>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+
 
 

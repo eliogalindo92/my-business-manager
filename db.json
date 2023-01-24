@@ -1,51 +1,8 @@
 {
-  "products": [
+  "login": [
     {
-      "code": "0001",
-      "name": "Ron",
-      "type": "Havana Club Silver Dry",
-      "cost": 800,
-      "measurement_unit": "u",
-      "id": 1
-    },
-    {
-      "code": "0002",
-      "name": "Cerveza",
-      "type": "Cristal",
-      "cost": 160,
-      "measurement_unit": "u",
-      "id": 2
-    },
-    {
-      "code": "0003",
-      "name": "Cerverza",
-      "type": "Bucanero",
-      "cost": 170,
-      "measurement_unit": "u",
-      "id": 3
-    },
-    {
-      "code": "0005",
-      "name": "Refresco",
-      "type": "Coca Cola",
-      "cost": 250,
-      "measurement_unit": "u",
-      "id": 5
-    },
-    {
-      "code": "0006",
-      "name": "Refresco",
-      "type": "Lima",
-      "cost": 300,
-      "measurement_unit": "u",
-      "id": 6
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "email": "eliogalindo@nauta.cu",
+      "password": "abc123"
     }
   ],
   "profile": {

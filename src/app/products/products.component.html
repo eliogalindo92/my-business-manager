@@ -1,13 +1,3 @@
-<p>
-  <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My Business Manager</span>
-    <span class="example-spacer"></span>
-  </mat-toolbar>
-</p>
-
 <div class="container">
   <div class="demo-button-container">
     <p>
@@ -67,10 +57,10 @@
       <ng-container matColumnDef="options">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Options </th>
         <td mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary" (click)="editProduct(row)">
-         <mat-icon>edit</mat-icon>
-        </button>
-          <button mat-icon-button color="warn" (click)="openConfirmationDialog(row.id)">
+          <button mat-icon-button color="primary" (click)="editProduct(row)" matTooltip="Edit">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openConfirmationDialog(row.id)" matTooltip="Delete">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -84,7 +74,6 @@
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
       </tr>
     </table>
-
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of Products"></mat-paginator>
   </div>
 </div>

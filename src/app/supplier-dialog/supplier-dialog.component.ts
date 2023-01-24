@@ -9,10 +9,11 @@ import {ApiService} from "../services/api.service";
   templateUrl: './supplier-dialog.component.html',
   styleUrls: ['./supplier-dialog.component.css']
 })
-export class SupplierDialogComponent {
+export class SupplierDialogComponent implements OnInit{
 
   supplierForm !: FormGroup;
   actionButton: string = 'Save';
+  progressBar: boolean = false;
   constructor(private formBuilder: FormBuilder, private matDialogRef: MatDialogRef<SupplierDialogComponent>, @Inject(MAT_DIALOG_DATA) public editData: any, private _snackBar: MatSnackBar, private api: ApiService) {}
 
 
@@ -36,6 +37,7 @@ export class SupplierDialogComponent {
   addSupplier(){
     if(!this.editData){
       if (this.supplierForm.valid){
+        this.progressBar = true;
         this.api.storeSupplier(this.supplierForm.value)
           .subscribe({
             next:(res)=>{
@@ -46,14 +48,16 @@ export class SupplierDialogComponent {
               });
             },
             error:(err)=>{
-              console.log(err);
-              this._snackBar.open('Something went wrong', 'X', {
+              this.progressBar = false;
+              let message = err.error.message;
+              this._snackBar.open(message, 'X', {
                 duration: 3000
               });
             }
           });
       }
       else {
+        this.progressBar = false;
         this._snackBar.open('You must add valid data!', 'X', {
           duration: 3000
         });
@@ -65,6 +69,7 @@ export class SupplierDialogComponent {
   }
   updateSupplier() {
     if (this.supplierForm.valid){
+      this.progressBar = true;
       this.api.updateSupplier(this.supplierForm.value, this.editData.id).subscribe({
         next:(res)=>{
           this.supplierForm.reset();
@@ -73,11 +78,19 @@ export class SupplierDialogComponent {
             duration: 3000
           });
         },
-        error:()=>{
-          this._snackBar.open('Something went wrong', 'X', {
+        error:(err)=>{
+          this.progressBar = false;
+          let message = err.error.message;
+          this._snackBar.open(message, 'X', {
             duration: 3000
           });
         }
+      });
+    }
+    else {
+      this.progressBar = false;
+      this._snackBar.open('You must add valid data!', 'X', {
+        duration: 3000
       });
     }
   }

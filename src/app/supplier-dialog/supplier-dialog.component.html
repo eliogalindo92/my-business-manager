@@ -1,4 +1,7 @@
-<mat-card>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-subtitle>Supplier</mat-card-subtitle>
+  </mat-card-header>
   <mat-card-content>
     <h1 mat-dialog-title>Add a new supplier.</h1>
     <div mat-dialog-content>
@@ -7,27 +10,28 @@
         <mat-form-field appearance="fill">
           <mat-label>Code</mat-label>
           <input formControlName="code" type="text" matInput placeholder="Type the code of the supplier.">
-          <mat-error *ngIf="supplierForm.get('code')?.errors?.['required']">You must enter a value.</mat-error>
+          <mat-error *ngIf="supplierForm.get('code')?.hasError('required')">You must enter a value.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
           <input formControlName="name" type="text" matInput placeholder="Type the name of the supplier.">
-          <mat-error *ngIf="supplierForm.get('name')?.errors?.['required']">You must enter a value.</mat-error>
+          <mat-error *ngIf="supplierForm.get('name')?.hasError('required')">You must enter a value.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Telephone</mat-label>
           <span matPrefix>+53 &nbsp;</span>
-          <input formControlName="phone_number" type="tel" maxlength="8" matInput placeholder="769-8**-**">
+          <input formControlName="phone_number" type="tel" #telephone minlength="8" maxlength="8" matInput placeholder="769-8**-**">
           <mat-icon matSuffix>phone</mat-icon>
-          <mat-error *ngIf="supplierForm.get('phone_number')?.errors?.['required']">You must enter a value.</mat-error>
+          <mat-hint align="end">{{telephone.value.length}} / 8</mat-hint>
+          <mat-error *ngIf="supplierForm.get('phone_number')?.hasError('required') || supplierForm.get('phone_number')?.hasError('minlength')">You must enter a valid telephone number.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Address</mat-label>
           <input formControlName="address" type="text" matInput placeholder="Type the address of supplier.">
-          <mat-error *ngIf="supplierForm.get('address')?.errors?.['required']">You must enter a value.</mat-error>
+          <mat-error *ngIf="supplierForm.get('address')?.hasError('required')">You must enter a value.</mat-error>
         </mat-form-field>
 
         <div mat-dialog-actions [align]="'end'">
@@ -36,6 +40,14 @@
         </div>
       </form>
     </div>
+    <mat-divider></mat-divider>
   </mat-card-content>
+  <mat-card-footer>
+    <mat-progress-bar *ngIf="progressBar" mode="indeterminate"></mat-progress-bar>
+  </mat-card-footer>
 </mat-card>
+
+
+
+
 

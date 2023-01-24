@@ -18,6 +18,7 @@ export class SuppliersComponent implements OnInit{
   displayedColumns: string[] = ['code', 'name', 'phone_number', 'address', 'options'];
   dataSource!: MatTableDataSource<any>;
 
+  progressBar: boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(public dialog: MatDialog, private _snackBar: MatSnackBar, private api: ApiService) {}
@@ -28,6 +29,7 @@ export class SuppliersComponent implements OnInit{
   }
 
   applyFilter(event: Event) {
+
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

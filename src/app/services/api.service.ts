@@ -11,7 +11,7 @@ export class ApiService {
 
   //   Methods for creating  authentication and registration.
   login(){
-    return this.http.get<any>('http://localhost:8000/api/login/');
+    return this.http.get<any>('http://localhost:3000/login/');
   }
   register(data: any){
     return this.http.post<any>('http://localhost:8000/api/register/', data);

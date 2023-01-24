@@ -18,8 +18,9 @@ export class DeleteSupplierDialogComponent {
           duration: 3000
         });
       },
-      error:()=>{
-        this._snackBar.open('Something went wrong', 'X', {
+      error:(err)=>{
+        let message = err.error.message;
+        this._snackBar.open(message, 'X', {
           duration: 3000
         });
       }

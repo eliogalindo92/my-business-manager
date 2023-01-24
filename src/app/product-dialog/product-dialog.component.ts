@@ -13,6 +13,7 @@ export class ProductDialogComponent implements OnInit{
   productForm !: FormGroup;
   actionButton: string = 'Save';
   dialogName: string = "Add a new product.";
+  progressBar: boolean = false;
   suppliers: any = [];
   constructor(private formBuilder: FormBuilder, private matDialogRef: MatDialogRef<ProductDialogComponent>, @Inject(MAT_DIALOG_DATA) public editData: any, private _snackBar: MatSnackBar, private api: ApiService) {}
 
@@ -26,8 +27,8 @@ export class ProductDialogComponent implements OnInit{
       cost: ['', Validators.required],
       measurement_unit: ['', Validators.required],
       supplier: ['', Validators.required]
-
     });
+
     if (this.editData){
       this.dialogName = "Update the selected product."
       this.actionButton = 'Update';
@@ -55,7 +56,7 @@ export class ProductDialogComponent implements OnInit{
   addProduct(){
     if(!this.editData){
       if (this.productForm.valid){
-        console.log(this.productForm.value);
+        this.progressBar = true;
         this.api.storeProduct(this.productForm.value)
           .subscribe({
             next:(res)=>{
@@ -66,13 +67,16 @@ export class ProductDialogComponent implements OnInit{
               });
             },
             error:(err)=>{
-              this._snackBar.open('Ups, something went wrong', 'X', {
+              this.progressBar = false;
+              let message = err.error.message;
+              this._snackBar.open(message, 'X', {
                 duration: 3000
               });
             }
           });
       }
       else {
+        this.progressBar = false;
         this._snackBar.open('You must add valid data!', 'X', {
           duration: 3000
         });
@@ -84,6 +88,7 @@ export class ProductDialogComponent implements OnInit{
   }
   updateProduct() {
     if (this.productForm.valid){
+      this.progressBar = true;
       this.api.updateProduct(this.productForm.value, this.editData.id).subscribe({
         next:(res)=>{
           this.productForm.reset();
@@ -92,11 +97,19 @@ export class ProductDialogComponent implements OnInit{
             duration: 3000
           });
         },
-        error:()=>{
-          this._snackBar.open('Something went wrong', 'X', {
+        error:(err)=>{
+          this.progressBar = false;
+          let message = err.error.message;
+          this._snackBar.open(message, 'X', {
             duration: 3000
           });
         }
+      });
+    }
+    else {
+      this.progressBar = false;
+      this._snackBar.open('You must add valid data!', 'X', {
+        duration: 3000
       });
     }
   }
