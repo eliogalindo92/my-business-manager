@@ -3,6 +3,8 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ApiService} from "../services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AuthService} from "../services/auth.service";
+
 
 @Component({
   selector: 'app-login',
@@ -14,8 +16,7 @@ export class LoginComponent implements OnInit {
   progressBar: boolean = false;
 
   loginForm !: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private router: Router, private _snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private api: ApiService, private router: Router, private _snackBar: MatSnackBar) {
   }
 
 
@@ -26,35 +27,45 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    if (this.loginForm.valid) {
-      this.progressBar = true;
-      this.api.login().subscribe({
-        next: (res) => {
-          const user = res.find((values: any) => {
-            return values.email === this.loginForm.value.email && values.password === this.loginForm.value.password;
+  logIn(){
+    if (this.loginForm.valid){
+      let data = this.loginForm.value;
+
+      // Get the CSRF Cookie
+      this.api.getCSRFCookie().subscribe({
+        next:()=>{
+          this.progressBar = true;
+
+          // Call the login method
+          this.api.logIn(data).subscribe({
+            next:(res)=>{
+              if (res.user.role === 'Administrator'){
+                this.auth.saveUser(res.user.name, 'ra');
+              }
+              else {
+                this.auth.saveUser(res.user.name, 'rc');
+              }
+              this.loginForm.reset();
+              this.router.navigate(['/dashboard']).then();
+
+            },
+            error:(err)=>{
+              this.progressBar = false;
+              let message = err.error.message;
+              this._snackBar.open(message, 'X', {
+                duration: 3000
+              });
+            }
           });
-          if (user) {
-            this.loginForm.reset();
-            this.router.navigate(['dashboard']).then(x => true);
-          } else {
-            this.progressBar = false;
-            this._snackBar.open('Invalid credentials', 'X', {
-              duration: 3000
-            });
-          }
         },
-          error: (err) => {
-          let message = err.error.message;
-          this._snackBar.open(message, 'X', {
-            duration: 3000
-          });
+        error:(err)=>{
+          console.log(err);
         }
       });
     }
     else {
       this.progressBar = false;
-      this._snackBar.open('You must insert valid credentials', 'X', {
+      this._snackBar.open('Please, insert valid credentials', 'X', {
         duration: 3000
       });
     }

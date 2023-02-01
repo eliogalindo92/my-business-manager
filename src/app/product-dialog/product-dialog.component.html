@@ -42,7 +42,6 @@
         <mat-form-field appearance="fill">
           <mat-label>Supplier</mat-label>
           <mat-select formControlName="supplier">
-            <mat-option>Select</mat-option>
             <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">{{supplier.name}}</mat-option>
           </mat-select>
           <mat-error *ngIf="productForm.get('supplier')?.hasError('required')">You must select a value.</mat-error>

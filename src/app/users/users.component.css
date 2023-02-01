@@ -1,0 +1,33 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+}
+
+#TableTitle{
+  margin-left: 5px;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: auto;
+}
+
+.container{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.demo-button-container {
+  padding-bottom: 2px;
+}
+
+.demo-button + .demo-button {
+  margin-left: 8px;
+}

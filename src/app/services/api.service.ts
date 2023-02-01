@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,16 +11,27 @@ export class ApiService {
 
 
   //   Methods for creating  authentication and registration.
-  login(){
-    return this.http.get<any>('http://localhost:3000/login/');
+   getCSRFCookie(){
+    return this.http.get<any>('http://localhost:8000/sanctum/csrf-cookie');
+  }
+  logIn(data: any){
+    return this.http.post<any>('http://localhost:8000/api/login/', data);
+  }
+  logOut(){
+    return this.http.get<any>('http://localhost:8000/api/logout/');
   }
   register(data: any){
     return this.http.post<any>('http://localhost:8000/api/register/', data);
   }
 
+  getUsers(){
+    return this.http.get<any>('http://localhost:8000/api/users/');
+  }
+  deleteUser(id: number){
+    return this.http.delete('http://localhost:8000/api/delete-user/' + id);
+  }
 
   // Methods for creating a Product CRUD.
-
   getProducts(){
     return this.http.get<any>('http://localhost:8000/api/products/');
   }

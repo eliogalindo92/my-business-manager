@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -15,6 +15,13 @@ import { SupplierDialogComponent } from './supplier-dialog/supplier-dialog.compo
 import { DeleteSupplierDialogComponent } from './delete-supplier-dialog/delete-supplier-dialog.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import {AuthService} from "./services/auth.service";
+import {ApiService} from "./services/api.service";
+import {GuardianService} from "./services/guardian.service";
+import { UsersComponent } from './users/users.component';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 
 
 
@@ -32,6 +39,9 @@ import { LoginComponent } from './login/login.component';
         DeleteSupplierDialogComponent,
         HomeComponent,
         LoginComponent,
+        UsersComponent,
+        UserDialogComponent,
+        DeleteUserDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -43,7 +53,7 @@ import { LoginComponent } from './login/login.component';
         MaterialUIModule,
 
     ],
-    providers: [],
+    providers: [AuthService, ApiService, GuardianService, {provide: HTTP_INTERCEPTORS, useClass:TokenInterceptorService, multi:true }],
   exports: [
     ProductsComponent,
     SuppliersComponent,

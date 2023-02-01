@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-content>
+    <h1 mat-dialog-title>Delete user</h1>
+    <div mat-dialog-content>
+      Would you like to delete this user?
+    </div>
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button mat-dialog-close>No</button>
+      <button mat-raised-button color="warn" cdkFocusInitial (click)="deleteUser()">Yes</button>
+    </div>
+  </mat-card-content>
+</mat-card>

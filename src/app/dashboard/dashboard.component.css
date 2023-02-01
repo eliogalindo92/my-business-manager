@@ -11,6 +11,10 @@
   height: 100%;
   width: auto;
 }
+.example-sidenav {
+  height: 100%;
+  width: 15%;
+}
 
 h4{
   text-align: center;
@@ -18,4 +22,7 @@ h4{
 
 .menu-button{
   width: 100%;
+}
+.example-card{
+  text-align: center;
 }
