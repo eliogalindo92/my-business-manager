@@ -64,11 +64,12 @@ export class UsersComponent implements OnInit, AfterViewInit{
     this.api.getUsers().subscribe(
       {
         next: (res)=>{
-          this.dataSource = new MatTableDataSource(res);
+          this.dataSource = new MatTableDataSource(res.users);
           this.ngAfterViewInit();
         },
-        error: ()=>{
-          this._snackBar.open('Ups, something went wrong', 'X', {
+        error: (err)=>{
+          let message = err.error.message
+          this._snackBar.open(message, 'X', {
             duration: 3000,
           });
         }

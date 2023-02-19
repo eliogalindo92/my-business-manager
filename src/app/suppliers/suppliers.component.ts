@@ -84,7 +84,8 @@ export class SuppliersComponent implements OnInit{
           this.ngAfterViewInit();
         },
         error: (err)=>{
-          this._snackBar.open('Something went wrong', 'X', {
+          let message = err.error.message
+          this._snackBar.open(message, 'X', {
             duration: 3000,
           });
         }

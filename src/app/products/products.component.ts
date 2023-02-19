@@ -81,8 +81,9 @@ export class ProductsComponent implements OnInit, AfterViewInit{
           this.dataSource = new MatTableDataSource(res);
           this.ngAfterViewInit();
         },
-        error: ()=>{
-          this._snackBar.open('Ups, something went wrong', 'X', {
+        error: (err)=>{
+          let message = err.error.message
+          this._snackBar.open(message, 'X', {
             duration: 3000,
           });
         }

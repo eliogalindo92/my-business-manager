@@ -3,19 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import {MaterialUIModule} from "../material-ui/material-ui.module";
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import {MatMenuModule} from "@angular/material/menu";
+import { DashboardComponent } from './dashboard.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
   ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        MaterialUIModule,
-        MatMenuModule,
-    ]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    MaterialUIModule,
+  ]
 })
 export class DashboardModule { }

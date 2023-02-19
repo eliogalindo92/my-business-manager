@@ -3,7 +3,9 @@ import {AuthService} from "../services/auth.service";
 import {Router} from "@angular/router";
 import {ApiService} from "../services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {catchError} from "rxjs";
+import {catchError, Observable} from "rxjs";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {map, shareReplay} from "rxjs/operators";
 
 
 @Component({
@@ -13,39 +15,33 @@ import {catchError} from "rxjs";
 })
 export class DashboardComponent implements OnInit{
 
-  client: boolean = false;
-  admin: boolean = false;
-  constructor(private api: ApiService, private _snackBar: MatSnackBar, private auth: AuthService, private router: Router) {}
+  name!: string;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+  constructor(private breakpointObserver: BreakpointObserver,  private api: ApiService, private _snackBar: MatSnackBar, private auth: AuthService, private router: Router) {}
 
   logout(){
-    this.api.logOut().subscribe({
+    this.api.logout().subscribe({
       next:(res)=>{
         let message = res.message;
         this._snackBar.open(message, 'X', {
           duration: 3000
         });
+        this.auth.forgetSession();
       },
       error:(err)=>{
         let errors = catchError(err);
         console.log(errors);
       }
     });
-    this.auth.forgetUser();
-    this.router.navigate(['/login']).then(x => true)
+    this.router.navigate(['/login']).then(() => true);
   }
 
   ngOnInit(): void {
-    this.role();
-  }
-  role(){
-    if (this.auth.getRole() === 'ra'){
-      this.client = false;
-      this.admin = true;
-    }
-    else if (this.auth.getRole() === 'rc'){
-      this.client = true;
-      this.admin = false;
-    }
+    this.name = this.auth.getUser();
   }
 }
 

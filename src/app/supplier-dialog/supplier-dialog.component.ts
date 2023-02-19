@@ -43,7 +43,8 @@ export class SupplierDialogComponent implements OnInit{
             next:(res)=>{
               this.supplierForm.reset();
               this.matDialogRef.close('save');
-              this._snackBar.open('Supplier added successfully', 'X', {
+              let message = res.message;
+              this._snackBar.open(message, 'X', {
                 duration: 3000
               });
             },
@@ -74,7 +75,8 @@ export class SupplierDialogComponent implements OnInit{
         next:(res)=>{
           this.supplierForm.reset();
           this.matDialogRef.close('update');
-          this._snackBar.open('Supplier updated successfully', 'X', {
+          let message = res.message;
+          this._snackBar.open(message, 'X', {
             duration: 3000
           });
         },

@@ -6,49 +6,49 @@
     <h1 mat-dialog-title>{{dialogName}}</h1>
     <div mat-dialog-content>
     <div class="signup">
-      <form [formGroup]="signupForm" class="example-form">
+      <form class="example-form">
 
         <mat-form-field appearance="fill">
           <mat-label>Type your full name</mat-label>
-          <input formControlName="name" type="text" matInput placeholder="Type your name.">
-          <mat-error *ngIf="signupForm.get('name')?.hasError('required')">You must enter a value.</mat-error>
+          <input [formControl]="name" type="text" matInput placeholder="Type your name.">
+          <mat-error *ngIf="name.invalid">You must enter a value.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Type your email</mat-label>
-          <input formControlName="email" type="email" matInput placeholder="pat@example.com" >
-          <mat-error *ngIf="signupForm.get('email')?.hasError('email') || signupForm.get('email')?.hasError('required')">You must enter a valid email.</mat-error>
+          <input [formControl]="email" type="email" matInput placeholder="pat@example.com" >
+          <mat-error *ngIf="email.invalid">You must enter a valid email.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Type the password</mat-label>
-          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+          <input [formControl]="password" matInput [type]="hide ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="signupForm.get('password')?.hasError('required')">You must enter a value.</mat-error>
+          <mat-error *ngIf="password.invalid">You must enter a value.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Retype the password</mat-label>
-          <input formControlName="password_confirmation" matInput [type]="hideConfirmation ? 'password' : 'text'">
+          <input [formControl]="password_confirmation" matInput [type]="hideConfirmation ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="hideConfirmation = !hideConfirmation" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmation">
             <mat-icon>{{hideConfirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
-          <mat-error *ngIf="signupForm.get('password_confirmation')?.hasError('required')">You must enter a value.</mat-error>
+          <mat-error *ngIf="password_confirmation.invalid">You must enter a value.</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Role</mat-label>
-          <mat-select formControlName="role" placeholder="Select role">
+          <mat-select [formControl]="role" placeholder="Select role">
             <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
           </mat-select>
-          <mat-error *ngIf="signupForm.get('role')?.hasError('required')">You must select a value.</mat-error>
+          <mat-error *ngIf="role.invalid">You must select a value.</mat-error>
         </mat-form-field>
 
         <div mat-dialog-actions [align]="'end'">
           <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
-          <button mat-raised-button color="primary" (click)="signUp()">{{actionButton}}</button>
+          <button mat-raised-button color="primary" (click)="register()">{{actionButton}}</button>
         </div>
       </form>
     </div>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -6,18 +7,17 @@ export class AuthService {
 
   constructor() { }
 
-saveUser(user: string, role: string){
-    sessionStorage.setItem('user', user);
-    sessionStorage.setItem('val', role);
-
+saveSession(name: string, token: string){
+    sessionStorage.setItem('user', name);
+    sessionStorage.setItem('token', token);
 }
-forgetUser(){
+forgetSession(){
     sessionStorage.clear();
 }
 getUser(): any{
     return sessionStorage.getItem('user');
 }
-  getRole(): any{
-
-  }
+getToken(){
+    return sessionStorage.getItem('token');
+}
 }

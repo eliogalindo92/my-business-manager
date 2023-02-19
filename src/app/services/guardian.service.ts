@@ -11,11 +11,11 @@ export class GuardianService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    if (this.auth.getUser()) {
+    if (this.auth.getToken()) {
       return true;
     }
     else {
-      this.router.navigate(['/login']).then();
+      this.router.navigate(['/login']).then(()=>true);
       return false;
     }
   }

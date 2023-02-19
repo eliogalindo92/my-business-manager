@@ -6,20 +6,20 @@
     <mat-card-content>
       <div class="login">
         <img alt="" src="assets/img/user.png">
-        <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="example-form">
+        <form (ngSubmit)="logIn()" class="example-form">
             <mat-form-field appearance="fill">
               <mat-label>Enter your email</mat-label>
-              <input formControlName="email" type="email" matInput placeholder="pat@example.com" >
-              <mat-error *ngIf="loginForm.get('email')?.hasError('email') || loginForm.get('email')?.hasError('required')">You must enter a valid email.</mat-error>
+              <input [formControl]="email" type="email" matInput placeholder="pat@example.com" >
+              <mat-error *ngIf="email.invalid">You must enter a valid email.</mat-error>
             </mat-form-field>
 
           <mat-form-field appearance="fill">
             <mat-label>Enter your password</mat-label>
-            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+            <input [formControl]="password" matInput [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">You must enter a value.</mat-error>
+            <mat-error *ngIf="password.invalid">You must enter a value.</mat-error>
           </mat-form-field>
           <div mat-dialog-actions>
             <button type="submit" mat-raised-button color="primary" id="login_btn">Login</button>

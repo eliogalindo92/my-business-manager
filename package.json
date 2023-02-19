@@ -21,7 +21,11 @@
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
     "crypto-js": "^4.1.1",
+    "hasha": "^5.2.2",
+    "md5": "^2.3.0",
     "ngx-cookie-service": "^15.0.0",
+    "object-hash": "^3.0.0",
+    "reverse-md5": "^0.0.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

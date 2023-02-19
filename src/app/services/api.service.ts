@@ -14,10 +14,10 @@ export class ApiService {
    getCSRFCookie(){
     return this.http.get<any>('http://localhost:8000/sanctum/csrf-cookie');
   }
-  logIn(data: any){
+  login(data: any){
     return this.http.post<any>('http://localhost:8000/api/login/', data);
   }
-  logOut(){
+  logout(){
     return this.http.get<any>('http://localhost:8000/api/logout/');
   }
   register(data: any){

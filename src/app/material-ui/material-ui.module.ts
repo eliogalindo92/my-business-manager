@@ -16,6 +16,10 @@ import {MatListModule} from "@angular/material/list";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatMenuModule} from "@angular/material/menu";
+import { MatGridListModule } from '@angular/material/grid-list';
+import { LayoutModule } from '@angular/cdk/layout';
+
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -33,7 +37,17 @@ const MaterialComponents = [
   MatListModule,
   MatSidenavModule,
   MatProgressBarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatMenuModule,
+  MatGridListModule,
+  MatCardModule,
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule,
+  LayoutModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
 ];
 @NgModule({
   imports: [

@@ -5,7 +5,7 @@
   <mat-card-content>
     <h1 mat-dialog-title>Add a new supplier.</h1>
     <div mat-dialog-content>
-      <form class="example-form" [formGroup]="supplierForm">
+      <form [formGroup]="supplierForm" class="example-form">
 
         <mat-form-field appearance="fill">
           <mat-label>Code</mat-label>
@@ -22,7 +22,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Telephone</mat-label>
           <span matPrefix>+53 &nbsp;</span>
-          <input formControlName="phone_number" type="tel" #telephone minlength="8" maxlength="8" matInput placeholder="769-8**-**">
+          <input formControlName="phone_number" type="tel" #telephone minlength="8" maxlength="8" matInput placeholder="769-***-**">
           <mat-icon matSuffix>phone</mat-icon>
           <mat-hint align="end">{{telephone.value.length}} / 8</mat-hint>
           <mat-error *ngIf="supplierForm.get('phone_number')?.hasError('required') || supplierForm.get('phone_number')?.hasError('minlength')">You must enter a valid telephone number.</mat-error>
