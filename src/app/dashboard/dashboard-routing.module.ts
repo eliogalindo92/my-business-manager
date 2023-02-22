@@ -9,7 +9,7 @@ import {UsersComponent} from "../users/users.component";
 const routes: Routes = [
   { path: '', component: DashboardComponent,
     children: [
-                { path: '', component: SuppliersComponent },
+                { path: '', component: HomeComponent },
                 { path: 'home', component: HomeComponent },
                 { path: 'suppliers', component: SuppliersComponent },
                 { path: 'products', component: ProductsComponent },

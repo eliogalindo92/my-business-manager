@@ -21,7 +21,7 @@ td, th {
 
 .container{
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 10px;
 }
 
 .demo-button-container {

@@ -16,6 +16,7 @@ import {map, shareReplay} from "rxjs/operators";
 export class DashboardComponent implements OnInit{
 
   name!: string;
+  admin = true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -42,7 +43,13 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit(): void {
     this.name = this.auth.getUser();
+
+    if (this.auth.getRole() === 'Client'){
+      this.admin = false;
+    }
   }
+
+
 }
 
 

@@ -7,9 +7,10 @@ export class AuthService {
 
   constructor() { }
 
-saveSession(name: string, token: string){
+saveSession(name: string, role:string, token: string){
     sessionStorage.setItem('user', name);
     sessionStorage.setItem('token', token);
+    sessionStorage.setItem('role', role);
 }
 forgetSession(){
     sessionStorage.clear();
@@ -17,7 +18,11 @@ forgetSession(){
 getUser(): any{
     return sessionStorage.getItem('user');
 }
-getToken(){
+
+getRole(): any{
+    return sessionStorage.getItem('role');
+}
+getToken(): any{
     return sessionStorage.getItem('token');
 }
 }

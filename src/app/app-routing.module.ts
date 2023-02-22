@@ -8,7 +8,7 @@ const routes: Routes =
   [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent},
-    { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(x => x.DashboardModule),canActivate:[GuardianService] },
+    { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(d => d.DashboardModule),canActivate:[GuardianService] },
     { path: '**', redirectTo: 'login', pathMatch: 'full'},
   ];
 // ,canActivate:[GuardianService]

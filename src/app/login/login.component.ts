@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
           // Call the login method
           this.api.login(data).subscribe({
             next:(res)=>{
-              this.auth.saveSession(res.user.name, res.token);
+              this.auth.saveSession(res.user.name, res.user.role, res.token);
               this.router.navigate(['/dashboard']).then(()=>true);
             },
             error:(err)=>{
